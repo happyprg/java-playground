@@ -16,7 +16,17 @@ public class StrategyPatternWithAnonymousClass {
     //    https://en.wikipedia.org/wiki/Strategy_pattern
     public static void main(String[] args) {
 
-        process(TypeA, new LabelReportTypeStrategyTypeA());
+        process(TypeA, new LabelReportTypePredicate() {
+            @Override
+            public boolean test(LabelReportType labelReportType) {
+                return labelReportType.getType().equals(TypeA.getType());
+            }
+
+            @Override
+            public Integer toString(LabelReportType labelReportType) {
+                return Integer.compare(1, labelReportType.getCode());
+            }
+        });
         process(TypeB, new LabelReportTypeStrategyTypeA());
     }
 
