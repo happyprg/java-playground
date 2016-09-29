@@ -6,13 +6,15 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package me.design.pattern;
+package me.design.pattern.strategy;
 
-public interface LabelReportTypePredicate
+public class LabelReportTypeStrategyTypeA implements LabelReportTypePredicate {
 
-{
+    public boolean test(LabelReportType labelReportType) {
+        return labelReportType.getType().equals(LabelReportType.TypeA.getType());
+    }
 
-    boolean test(LabelReportType reportType);
-
-    Integer toString(LabelReportType labelReportType);
+    public Integer toString(LabelReportType labelReportType) {
+        return Integer.compare(1, labelReportType.getCode());
+    }
 }

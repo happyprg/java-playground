@@ -6,26 +6,13 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package me.design.pattern;
+package me.design.pattern.strategy;
 
-public enum LabelReportType {
+public interface LabelReportTypePredicate
 
-    TypeA(1, "typeA"),
-    TypeB(2, "typeB");
+{
 
-    private Integer code;
-    private String type;
+    boolean test(LabelReportType reportType);
 
-    LabelReportType(Integer code, String type) {
-        this.code = code;
-        this.type = type;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public String getType() {
-        return type;
-    }
+    Integer toString(LabelReportType labelReportType);
 }

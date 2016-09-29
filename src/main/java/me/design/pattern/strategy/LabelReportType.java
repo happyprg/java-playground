@@ -6,17 +6,26 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package me.design.pattern;
+package me.design.pattern.strategy;
 
-import static me.design.pattern.LabelReportType.TypeA;
+public enum LabelReportType {
 
-public class LabelReportTypeStrategyTypeA implements LabelReportTypePredicate {
+    TypeA(1, "typeA"),
+    TypeB(2, "typeB");
 
-    public boolean test(LabelReportType labelReportType) {
-        return labelReportType.getType().equals(TypeA.getType());
+    private Integer code;
+    private String type;
+
+    LabelReportType(Integer code, String type) {
+        this.code = code;
+        this.type = type;
     }
 
-    public Integer toString(LabelReportType labelReportType) {
-        return Integer.compare(1, labelReportType.getCode());
+    public Integer getCode() {
+        return code;
+    }
+
+    public String getType() {
+        return type;
     }
 }

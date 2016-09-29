@@ -6,28 +6,15 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package me.design.pattern;
+package me.design.pattern.strategy;
 
-import static me.design.pattern.LabelReportType.TypeA;
-import static me.design.pattern.LabelReportType.TypeB;
-
-public class StrategyPatternWithAnonymousClass {
+public class StrategyPatternMain {
 
     //    https://en.wikipedia.org/wiki/Strategy_pattern
     public static void main(String[] args) {
 
-        process(TypeA, new LabelReportTypePredicate() {
-            @Override
-            public boolean test(LabelReportType labelReportType) {
-                return labelReportType.getType().equals(TypeA.getType());
-            }
-
-            @Override
-            public Integer toString(LabelReportType labelReportType) {
-                return Integer.compare(1, labelReportType.getCode());
-            }
-        });
-        process(TypeB, new LabelReportTypeStrategyTypeA());
+        process(LabelReportType.TypeA, new LabelReportTypeStrategyTypeA());
+        process(LabelReportType.TypeB, new LabelReportTypeStrategyTypeA());
     }
 
     public static void process(LabelReportType labelreportType, LabelReportTypePredicate
