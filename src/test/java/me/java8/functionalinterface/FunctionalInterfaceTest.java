@@ -6,7 +6,7 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package me.design.pattern.execute.around;
+package me.java8.functionalinterface;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -20,7 +20,7 @@ import java.net.URISyntaxException;
 
 import org.junit.Test;
 
-public class ExecuteAround {
+public class FunctionalInterfaceTest {
 
     //data.txt
     //1
