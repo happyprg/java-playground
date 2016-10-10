@@ -8,6 +8,9 @@
 
 package me.design.pattern.method.reference;
 
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.toList;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,14 +33,10 @@ public class ExamTransactionTest {
                 new Transaction(mario, 2012, 700),
                 new Transaction(alan, 2012, 950));
 
-    }
-
-    @Test
-    public void testCount() {
-
-        List<Integer> integers = Arrays.asList(1, 2, 3);
-        long count = integers.stream().count();
-        System.out.println("count - " + count);
+        transactions.stream()
+                    .filter((Transaction t) -> t.getYear() == 2011)
+                    .sorted(comparing(Transaction::getValue)).collect(toList()).forEach
+                (System.out::println);
     }
 
     private class Trader {
