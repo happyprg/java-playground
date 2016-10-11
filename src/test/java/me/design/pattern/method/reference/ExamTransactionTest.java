@@ -9,10 +9,12 @@
 package me.design.pattern.method.reference;
 
 import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -60,13 +62,51 @@ public class ExamTransactionTest {
 
     @Test
     public void test3() {
-        transactions.stream().map(t -> t.getTrader()).filter((t) -> t.getCity().equals("Cambridge"))
+        transactions.stream().map(Transaction::getTrader).filter((t) -> t.getCity().equals("Cambridge"))
                     .sorted(comparing(Trader::getName)).collect(toList()).forEach(System.out::println);
     }
 
     @Test
     public void test4() {
+        String reduce = transactions.stream().map((Transaction t) -> t.getTrader().getName())
+                                    .distinct()
+                                    .sorted()
+//                                    .reduce("", (n1, n2) -> n1 + n2);
+                                    .collect(joining());
+        System.out.println("reduce = " + reduce);
+    }
 
+    @Test
+    public void test5() {
+
+        boolean result = transactions.stream()
+                                     .anyMatch((Transaction t) -> t.getTrader().getCity().equals("Milan"));
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    public void test6() {
+        transactions.stream().filter((Transaction t) -> t.getTrader().getCity().equals("Cambridge"))
+                    .map(t -> t.getValue()).forEach(System.out::println);
+    }
+
+    @Test
+    public void test7() {
+        Optional<Integer> reduce = transactions.stream()
+                                               .map(Transaction::getValue)
+                                               .reduce(Integer::max);
+        System.out.println("reduce = " + reduce.get());
+    }
+
+    @Test
+    public void test8() {
+        Optional<Transaction> reduce = transactions.stream()
+                                                   .min(comparing(Transaction::getValue));
+//                                               .map(Transaction::getValue)
+//                                               .reduce(Integer::min);
+//                                               .reduce((t1, t2) -> t1 < t2 ? t1 : t2);
+
+        System.out.println("reduce = " + reduce.get());
     }
 
     private class Trader {
