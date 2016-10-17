@@ -13,13 +13,35 @@ import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class ExamTransactionTest {
+
+    @Test
+    public void test101010() {
+        int[] nums = new int[] { 2, 7, 11, 15 };
+        int[] ints = twoSum(nums, 9);
+        System.out.println("ints = " + Arrays.toString(ints));
+    }
+
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            int complement = target - num;
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
+            }
+            map.put(num, i);
+        }
+        throw new IllegalArgumentException("No two sum solution");
+    }
 
     private Trader raoul;
     private Trader mario;
@@ -105,7 +127,6 @@ public class ExamTransactionTest {
 //                                               .map(Transaction::getValue)
 //                                               .reduce(Integer::min);
 //                                               .reduce((t1, t2) -> t1 < t2 ? t1 : t2);
-
         System.out.println("reduce = " + reduce.get());
     }
 
