@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 
 import org.junit.Test;
 
-public class TemplateMethodPattern {
+public class TemplateMethodPatternTest {
 
     @Test
     public void test1() {
